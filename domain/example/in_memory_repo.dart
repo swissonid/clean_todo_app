@@ -12,7 +12,7 @@ class TodoDAO implements TodoEntity {
   String get description => 'Descritpion of $_id';
 
   @override
-  Status get status => Status.OPEN;
+  String get status => 'OPEN';
 
   @override
   String get title => 'Title of $_id';
