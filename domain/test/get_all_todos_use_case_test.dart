@@ -6,23 +6,21 @@ import 'mocks.dart';
 
 void main() {
   group('Create Todo Tests', () {
-    SaveTodoUseCase createTodoUseCase;
+    GetAllTodosUseCase getAllTodosUseCase;
     TodoRepository todoRepository;
-    Todo todo;
 
     setUp(() {
       todoRepository = TodoRepoMock();
-      createTodoUseCase = SaveTodoUseCase(todoRepository);
-      todo = TodoMock();
+      getAllTodosUseCase = GetAllTodosUseCase(todoRepository);
     });
 
     test('should not be null', () {
-      expect(createTodoUseCase, isNotNull);
+      expect(getAllTodosUseCase, isNotNull);
     });
 
     test('should call save on the repo', () {
-      createTodoUseCase.runWith(todo);
-      verify(todoRepository.save(any));
+      getAllTodosUseCase.run();
+      verify(todoRepository.todos());
     });
   });
 }

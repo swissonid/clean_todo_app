@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:domain/domain.dart';
-import 'package:domain/src/repository/todo_repositoy.dart';
 
-class CreateTodoUseCase {
+class SaveTodoUseCase {
   final TodoRepository _repo;
-  CreateTodoUseCase(this._repo);
+  SaveTodoUseCase(this._repo) : assert(_repo != null);
 
   Future<Null> runWith(Todo todo) {
     return _repo.save(todo);

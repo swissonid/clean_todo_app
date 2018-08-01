@@ -1,1 +1,1 @@
-enum Status { OPEN, INPROGRESS, DONE }
+enum Status { OPEN, IN_PROGRESS, DONE }
