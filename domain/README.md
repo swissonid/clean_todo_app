@@ -7,7 +7,7 @@ Is an simple domain implementation of an todo app.
 
 A simple usage example:
 ```dart
-import 'package:domain/domain.dart';
+import 'package:todo_domain/domain.dart';
 
 import 'in_memory_repo.dart'; // you can find the implementation in the example folder
 

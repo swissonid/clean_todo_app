@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+import 'package:todo_domain/domain.dart';
 
 import 'in_memory_repo.dart';
 
@@ -25,7 +25,7 @@ main() async {
   getAllTodo.run().then(printAllTodos);
 }
 
-void printAllTodos(List<Todo> todos) {
+void printAllTodos(List<TodoEntity> todos) {
   print('Get All Todos ${todos.length}');
   todos.forEach((todo) => print(todo));
 }

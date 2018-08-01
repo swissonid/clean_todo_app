@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:domain/domain.dart';
+import 'package:todo_domain/domain.dart';
 
-class TodoDAO implements Todo {
+class TodoDAO implements TodoEntity {
   final String _id;
   TodoDAO(this._id);
   @override
@@ -24,30 +24,31 @@ class TodoDAO implements Todo {
 }
 
 class InMemoryRepo implements TodoRepository {
-  Set<Todo> _todos;
+  Set<TodoEntity> _todos;
   InMemoryRepo() {
-    final List<Todo> somtTodos = List.generate(3, (index) => TodoDAO(index.toString()));
+    final List<TodoEntity> somtTodos =
+        List.generate(3, (index) => TodoDAO(index.toString()));
     _todos = Set.from(somtTodos);
   }
   @override
-  Future<Null> delete(Todo todo) {
+  Future<Null> delete(TodoEntity todo) {
     _todos.remove(todo);
     return Future.value(null);
   }
 
   @override
-  Future<Null> save(Todo todo) {
+  Future<Null> save(TodoEntity todo) {
     _todos.add(todo);
     return Future.value(null);
   }
 
   @override
-  Future<Todo> todo(String id) {
-    return Future.value(_todos.firstWhere((Todo todo) => todo.Id == id));
+  Future<TodoEntity> todo(String id) {
+    return Future.value(_todos.firstWhere((TodoEntity todo) => todo.Id == id));
   }
 
   @override
-  Future<List<Todo>> todos() {
+  Future<List<TodoEntity>> todos() {
     return Future.value(_todos.toList());
   }
 }

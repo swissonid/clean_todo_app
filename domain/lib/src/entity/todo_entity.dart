@@ -1,8 +1,8 @@
-import 'package:domain/domain.dart';
 import 'package:meta/meta.dart';
+import 'package:todo_domain/domain.dart';
 
 @immutable
-abstract class Todo {
+abstract class TodoEntity {
   String get Id;
   String get title;
   String get description;

@@ -1,6 +1,6 @@
-import 'package:domain/domain.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+import 'package:todo_domain/domain.dart';
 
 import 'mocks.dart';
 
@@ -8,7 +8,7 @@ void main() {
   group('Create Todo Tests', () {
     SaveTodoUseCase createTodoUseCase;
     TodoRepository todoRepository;
-    Todo todo;
+    TodoEntity todo;
 
     setUp(() {
       todoRepository = TodoRepoMock();
