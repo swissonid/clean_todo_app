@@ -1,19 +1,44 @@
 # domain
 
-A library for Dart developers.
+Is an simple domain implementation of an todo app.
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
 
 ## Usage
 
 A simple usage example:
 
     import 'package:domain/domain.dart';
-
-    main() {
-      var awesome = new Awesome();
+    
+    import 'in_memory_repo.dart'; // you can find the implementation in the example folder
+    
+    final todoRepos = InMemoryRepo();
+    final getTodo = GetTodoUseCase(todoRepos);
+    final getAllTodo = GetAllTodosUseCase(todoRepos);
+    final saveTodo = SaveTodoUseCase(todoRepos);
+    final deleteTodo = DeleteTodoUseCase(todoRepos);
+    
+    main() async {
+      getAllTodo.run().then(printAllTodos);
+    
+      getTodo.runWith('1').then((todo) {
+        print("\nGet Todo 1");
+        print(todo);
+      });
+    
+      final todo = await getTodo.runWith('1');
+      await deleteTodo.runWith(todo);
+      print('\n Deleted \n $todo');
+      getAllTodo.run().then(printAllTodos);
+    
+      await saveTodo.runWith(TodoDAO("3"));
+      getAllTodo.run().then(printAllTodos);
     }
+    
+    void printAllTodos(List<Todo> todos) {
+      print('Get All Todos ${todos.length}');
+      todos.forEach((todo) => print(todo));
+    }
+
 
 ## Features and bugs
 
