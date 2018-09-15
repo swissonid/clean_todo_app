@@ -6,7 +6,7 @@ class GetTodoUseCase {
   final TodoRepository _repo;
   GetTodoUseCase(this._repo) : assert(_repo != null);
 
-  Future<TodoEntity> runWith(String id) {
+  Future<ToDo> runWith(String id) {
     return _repo.todo(id);
   }
 }

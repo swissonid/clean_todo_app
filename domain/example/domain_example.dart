@@ -25,7 +25,7 @@ main() async {
   getAllTodo.run().then(printAllTodos);
 }
 
-void printAllTodos(List<TodoEntity> todos) {
+void printAllTodos(List<ToDo> todos) {
   print('Get All Todos ${todos.length}');
   todos.forEach((todo) => print(todo));
 }

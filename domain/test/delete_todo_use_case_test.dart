@@ -8,7 +8,7 @@ void main() {
   group('Create Todo Tests', () {
     DeleteTodoUseCase deleteUseCase;
     TodoRepository todoRepository;
-    TodoEntity todo;
+    ToDo todo;
 
     setUp(() {
       todoRepository = TodoRepoMock();

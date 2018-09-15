@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:todo_domain/domain.dart';
 
-class TodoDAO implements TodoEntity {
+class TodoDAO implements ToDo {
   final String _id;
   TodoDAO(this._id);
   @override
-  String get Id => _id;
+  String get id => _id;
 
   @override
   String get description => 'Descritpion of $_id';
@@ -19,36 +19,36 @@ class TodoDAO implements TodoEntity {
 
   @override
   String toString() {
-    return 'Todo: { \n\t id: $Id, \n\t title: $title, \n\t description: $description, \n\t status: $status \n\t}';
+    return 'Todo: { \n\t id: $id, \n\t title: $title, \n\t description: $description, \n\t status: $status \n\t}';
   }
 }
 
 class InMemoryRepo implements TodoRepository {
-  Set<TodoEntity> _todos;
+  Set<ToDo> _todos;
   InMemoryRepo() {
-    final List<TodoEntity> somtTodos =
+    final List<ToDo> somtTodos =
         List.generate(3, (index) => TodoDAO(index.toString()));
     _todos = Set.from(somtTodos);
   }
   @override
-  Future<Null> delete(TodoEntity todo) {
+  Future<void> delete(ToDo todo) {
     _todos.remove(todo);
     return Future.value(null);
   }
 
   @override
-  Future<Null> save(TodoEntity todo) {
+  Future<void> save(ToDo todo) {
     _todos.add(todo);
     return Future.value(null);
   }
 
   @override
-  Future<TodoEntity> todo(String id) {
-    return Future.value(_todos.firstWhere((TodoEntity todo) => todo.Id == id));
+  Future<ToDo> todo(String id) {
+    return Future.value(_todos.firstWhere((ToDo todo) => todo.id == id));
   }
 
   @override
-  Future<List<TodoEntity>> todos() {
+  Future<List<ToDo>> todos() {
     return Future.value(_todos.toList());
   }
 }
